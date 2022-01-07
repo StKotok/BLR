@@ -30,13 +30,20 @@ class MainScreenState extends State<MainScreen> {
                   );
                 }),
           ),
-          Container(child: TextField(
+          TextField(
+            keyboardType: TextInputType.multiline,
+            autofocus: true,
+            minLines: 1,
+            maxLines: 4,
+            decoration: const InputDecoration(
+              labelText: 'Введите или вставьте сюда текст',
+            ),
             onChanged: (text) {
               setState(() {
                 this.text = text;
               });
             },
-          )),
+          ),
         ],
       )),
     );
