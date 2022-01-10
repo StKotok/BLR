@@ -9,6 +9,7 @@ class MainScreen extends StatefulWidget {
 
 class MainScreenState extends State<MainScreen> {
   String text = "";
+  final ScrollController _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -30,19 +31,24 @@ class MainScreenState extends State<MainScreen> {
                   );
                 }),
           ),
-          TextField(
-            keyboardType: TextInputType.multiline,
-            autofocus: true,
-            minLines: 1,
-            maxLines: 4,
-            decoration: const InputDecoration(
-              labelText: 'Введите или вставьте сюда текст',
+          Scrollbar(
+            controller: _scrollController,
+            isAlwaysShown: true,
+            child: TextField(
+              scrollController: _scrollController,
+              keyboardType: TextInputType.multiline,
+              autofocus: true,
+              minLines: 1,
+              maxLines: 4,
+              decoration: const InputDecoration(
+                labelText: 'Введите или вставьте сюда текст',
+              ),
+              onChanged: (text) {
+                setState(() {
+                  this.text = text;
+                });
+              },
             ),
-            onChanged: (text) {
-              setState(() {
-                this.text = text;
-              });
-            },
           ),
         ],
       )),
